@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="/CSS/style.css"> 
+</head>
+<body>
+    <h1>To-Do List App</h1>
+    
+    <% if (locals.editTodo) { %>
+        <form action="/edit/<%= editTodo.id %>" method="POST">
+            <input type="text" name="task" value="<%= editTodo.task %>" required>
+            <button type="submit" style="background-color: orange;">Update Task</button>
+            <a href="/" style="padding: 12px 20px; border: none; background-color: #ccc; color: #333; text-decoration: none; border-radius: 0 4px 4px 0; margin-left: 5px;">Cancel</a>
+        </form>
+        <p>Currently editing: **<%= editTodo.task %>**</p>
+    <% } else { %>
+        <form action="/add" method="POST">
+            <input type="text" name="task" placeholder="Add a new task..." required>
+            <button type="submit">Add Task</button>
+        </form>
+    <% } %>
+
+    <hr>
+
+    <% if (todos.length > 0) { %>
+        <% todos.forEach(function(todo) { %>
+            <div class="todo-item <%= todo.completed ? 'completed' : '' %>">
+                
+                <span><%= todo.task %></span>
+
+                <div class="actions">
+                    <form action="/edit/<%= todo.id %>" method="GET" style="margin-left: 0;">
+                        <button type="submit" style="background-color: #ffc107; color: black; border: none;">Edit</button>
+                    </form>
+                    
+                    <form action="/toggle/<%= todo.id %>" method="POST">
+                        <button type="submit" style="background-color: <%= todo.completed ? '#dc3545' : '#28a745' %>;">
+                            <%= todo.completed ? 'Undo' : 'Complete' %>
+                        </button>
+                    </form>
+
+                    <form action="/delete/<%= todo.id %>" method="POST">
+                        <button type="submit" style="background-color: #6c757d;">Delete</button>
+                    </form>
+                </div>
+            </div>
+        <% }); %>
+    <% } else { %>
+        <p>Your list is empty! Add a task above.</p>
+    <% } %>
+
+</body>
+</html>
