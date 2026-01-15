@@ -1,0 +1,8 @@
+<%- include('layout') %>
+
+
+<form action="/update/<%= todo.id %>" method="post" class="todo-form">
+<input type="text" name="title" value="<%= todo.title %>" required>
+<button>Update</button>
+</form>
+<a href="/" class="back">← Back</a>

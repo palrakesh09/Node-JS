@@ -1,0 +1,23 @@
+<%-include('layout') %>
+
+
+<form action="/add" method="post" class="todo-form">
+<input type="text" name="title" placeholder="Enter todo..." required>
+<button>Add</button>
+</form>
+
+
+<ul class="todo-list">
+<% todos.forEach(todo => { %>
+<li class="<%= todo.completed ? 'done' : '' %>">
+<span><%= todo.title %></span>
+<div class="actions">
+<a href="/toggle/<%= todo.id %>" class="btn">✔</a>
+<a href="/edit/<%= todo.id %>" class="btn edit">✎</a>
+<a href="/delete/<%= todo.id %>" class="btn del">✖</a>
+</div>
+</li>
+<% }) %>
+</ul>
+
+<%-include('footer') %>
