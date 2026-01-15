@@ -1,0 +1,10 @@
+<%- include("../layouts/main") %>
+<div class="container mt-4">
+<h2><%=movie.name%></h2>
+<img src="/images/<%=movie.image%>" width="200">
+<form action="/booking/book" method="post">
+<input type="hidden" name="showId" value="1">
+<input name="seatId" placeholder="Seat">
+<input name="price" placeholder="Price">
+<button class="btn btn-success">Confirm</button>
+</form></div>

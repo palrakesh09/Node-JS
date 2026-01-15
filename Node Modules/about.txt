@@ -1,0 +1,10 @@
+Modules like one type of function
+Types of Modules:
+1.Core Modules
+Built-in modules provided by Node.js, such as fs,http,path,etc.
+
+2.Local Modules
+Custom modules created by developers and located within the project.
+
+3.Third-Party Modules
+Modules installed via npm(Node Package Manager).
