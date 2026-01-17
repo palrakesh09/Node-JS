@@ -1,0 +1,14 @@
+<%- include('partials/header') %>
+
+
+<form method="post" action="/update/<%= book._id %>" class="card p-3">
+<input name="title" class="form-control mb-2" value="<%= book.title %>">
+<input name="author" class="form-control mb-2" value="<%= book.author %>">
+<input name="category" class="form-control mb-2" value="<%= book.category %>">
+<input name="price" type="number" class="form-control mb-2" value="<%= book.price %>">
+<input name="stock" type="number" class="form-control mb-2" value="<%= book.stock %>">
+<button class="btn btn-success">Update</button>
+</form>
+
+
+<%- include('partials/footer') %>

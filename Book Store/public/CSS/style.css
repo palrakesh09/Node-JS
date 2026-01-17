@@ -1,0 +1,12 @@
+body {
+    background: #f5f7fa;
+}
+
+table {
+    background: white;
+}
+
+.card {
+    max-width: 450px;
+    margin: auto;
+}
