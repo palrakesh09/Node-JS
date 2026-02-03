@@ -1,0 +1,12 @@
+<%- include('partials/header') %>
+    <h3>Shows</h3>
+    <% shows.forEach(s=>{ %>
+        <div class="card p-2 mb-2">
+            <p>Date: <%= s.showDate %> | Time: <%= s.showTime %>
+            </p>
+            <p>Seats: <%= s.availableSeats %>
+            </p>
+            <a href="/ticket/book/<%= s._id %>" class="btn btn-success">Book</a>
+        </div>
+        <% }) %>
+            <%- include('partials/footer') %>

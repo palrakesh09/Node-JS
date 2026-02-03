@@ -1,0 +1,20 @@
+<%- include('layout') %>
+    <h3>Select Seat</h3>
+    <div class="row">
+        <% seats.forEach(s=>{ %>
+            <div class="col-2 m-2">
+                <% if(s.booked){ %>
+                    <button class="btn btn-danger" disabled>
+                        <%=s.number%>
+                    </button>
+                    <% }else{ %>
+                        <form action="/seat/book" method="post">
+                            <input type="hidden" name="seatId" value="<%=s._id%>">
+                            <button class="btn btn-success">
+                                <%=s.number%>
+                            </button>
+                        </form>
+                        <% } %>
+            </div>
+            <% }) %>
+    </div>

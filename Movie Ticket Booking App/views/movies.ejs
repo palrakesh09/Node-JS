@@ -1,0 +1,24 @@
+<%- include('partials/header') %>
+    <h3>Movies</h3>
+    <div class="row">
+        <% if(movies.length> 0) { %>
+            <% movies.forEach(m=>{ %>
+                <div class="col-md-3">
+                    <div class="card p-2 mb-3">
+                        <h5>
+                            <%= m.title %>
+                        </h5>
+                        <p>
+                            <%= m.genre %>
+                        </p>
+                        <a href="/shows/<%= m._id %>" class="btn btn-primary">View Shows</a>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <div class="col-12">
+                            <p>No movies found.</p>
+                        </div>
+                        <% } %>
+    </div>
+    <%- include('partials/footer') %>

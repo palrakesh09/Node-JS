@@ -1,9 +1,8 @@
-const r = require("express").Router();
-const c = require("../controllers/adminController");
-const a = require("../middlewares/adminAuth");
-
-
-r.get("/dashboard",a,(req,res)=>res.render("admin/dashboard"));
-r.get("/add-movie",a,(req,res)=>res.render("admin/addMovie"));
-r.post("/add-movie",a,c.upload,c.addMovie);
-module.exports=r;
+const router=require('express').Router();
+const {isAdmin}=require('../middleware/auth');
+const Movie=require('../models/Movie');
+router.get('/',isAdmin,async(req,res)=>{
+const movies=await Movie.find();
+res.render('admin/dashboard',{movies});
+});
+module.exports=router;

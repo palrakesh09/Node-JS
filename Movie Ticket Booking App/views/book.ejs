@@ -1,0 +1,9 @@
+<%- include('partials/header') %>
+    <form method="post" action="/ticket/book" class="card p-3">
+        <input type="hidden" name="showId" value="<%= show._id %>">
+        <input name="custId" placeholder="Customer ID" class="form-control mb-2">
+        <input name="seatNumber" placeholder="Seat Number" class="form-control mb-2">
+        <input name="bookingDate" placeholder="Date" class="form-control mb-2">
+        <button class="btn btn-primary">Confirm</button>
+    </form>
+    <%- include('partials/footer') %>

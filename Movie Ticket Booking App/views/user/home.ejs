@@ -1,9 +1,0 @@
-<%- include("../layouts/main") %>
-<div class="container mt-4"><div class="row">
-<% movies.forEach(m=>{ %>
-<div class="col-md-3"><div class="card mb-3">
-<img src="/images/<%=m.image%>" class="card-img-top">
-<div class="card-body"><h5><%=m.name%></h5>
-<a href="/movie/<%=m._id%>" class="btn btn-primary">Book</a></div></div></div>
-<% }) %>
-</div></div>

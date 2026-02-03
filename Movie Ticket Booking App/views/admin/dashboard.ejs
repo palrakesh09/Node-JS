@@ -1,3 +1,20 @@
-<%- include("../layouts/main") %>
-<h2 class="m-4">Admin Dashboard</h2>
-<a href="/admin/add-movie" class="btn btn-primary ms-4">Add Movie</a>
+<%- include('../layout') %>
+    <h2>Admin Panel</h2>
+    <a href="/movies/add" class="btn btn-primary">Add Movie</a>
+    <table class="table mt-3">
+        <tr>
+            <th>Title</th>
+            <th>Action</th>
+        </tr>
+        <% movies.forEach(m=>{ %>
+            <tr>
+                <td>
+                    <%=m.title%>
+                </td>
+                <td>
+                    <a href="/movies/edit/<%=m._id%>" class="btn btn-warning">Edit</a>
+                    <a href="/movies/delete/<%=m._id%>" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+            <% }) %>
+    </table>

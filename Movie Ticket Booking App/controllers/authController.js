@@ -1,22 +1,16 @@
-const Admin = require("../models/Admin");
-const Customer = require("../models/Customer");
-
-
-exports.adminLogin = async(req,res)=>{
-const a = await Admin.findOne(req.body);
-if(a){res.cookie("admin",a._id);res.redirect("/admin/dashboard");}
-else res.render("auth/login",{error:"Invalid"});
+const User = require('../models/User');
+const bcrypt = require('bcryptjs');
+exports.register = async (req, res) => {
+    const hash = await bcrypt.hash(req.body.password, 10);
+    await User.create({ ...req.body, password: hash });
+    res.redirect('/login');
 };
-
-
-exports.userRegister = async(req,res)=>{
-await Customer.create(req.body);
-res.redirect("/auth/login");
+exports.login = async (req, res) => {
+    const u = await User.findOne({ email: req.body.email });
+    if (!u) return res.redirect('/login');
+    const ok = await bcrypt.compare(req.body.password, u.password);
+    if (!ok) return res.redirect('/login');
+    req.session.user = u;
+    u.role === 'admin' ? res.redirect('/admin') : res.redirect('/');
 };
-
-
-exports.userLogin = async(req,res)=>{
-const u = await Customer.findOne(req.body);
-if(u){res.cookie("user",u._id);res.redirect("/");}
-else res.render("auth/login",{error:"Invalid"});
-};
+exports.logout = (req, res) => { req.session.destroy(() => res.redirect('/login')); };

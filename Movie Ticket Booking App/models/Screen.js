@@ -1,8 +1,6 @@
-const screenSchema = new mongoose.Schema({
-  screenId: String,
-  theaterId: String,
-  screenType: String,
-  totalSeats: Number,
-  bookedSeats: Number
-});
-module.exports = mongoose.model("Screen", screenSchema);
+const mongoose = require('mongoose');
+module.exports = mongoose.model('Screen', new mongoose.Schema({
+theaterId:{type:mongoose.Schema.Types.ObjectId, ref:'Theater'},
+screenCapacity:Number, 
+screenNumber:Number
+}));
